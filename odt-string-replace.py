@@ -1,4 +1,4 @@
-import os, fnmatch, zipfile, sys
+import os, fnmatch, zipfile, sys, shutil
 from pathlib import Path
 
 
@@ -37,20 +37,30 @@ def deleteOldZips(directory):
             if currentFile.lower().endswith('.zip'):
                 os.remove(os.path.join(root, currentFile))
 
+
+def zipFolder(directory):
+    for folder in os.listdir(directory):
+        if folder != 'desktop.ini':
+            zipf = zipfile.ZipFile('{0}.zip'.format(os.path.join(directory, folder)), 'w', zipfile.ZIP_DEFLATED)
+            zipf.write(folder)
+            zipf.close()
+
+
+data_folder = Path("C:/Users/wesleykruger/Documents/Encore/single-line-fix/rename-these")
+renameFileExtension(data_folder, ".odt", ".zip")
+unzipToSeparateDirectories(data_folder)
+findReplace(data_folder, "#if ( $PAGETWOARR.size() == 1 )", "#if ( $PAGETWOARR.size() == 1 || (($foreach.count - 1) % 4 == 0 and $foreach.count == $PAGETWOARR.size() ))", "*.xml")
+zipFolder(data_folder)
+renameFileExtension(data_folder, ".zip", ".odt")
+
+
+'''
 def zipFolder(directory):
     for folder in os.listdir(directory):
         if folder != 'desktop.zip':
-            zipf = zipfile.ZipFile('{0}.zip'.format(os.path.join(directory, folder)), 'w', zipfile.ZIP_DEFLATED)
+            zipf = zipfile.ZipFile('{0}.zip'.format(os.path.join(directory, folder)), 'w', zipfile.ZIP_STORED)
             for root, dirs, files in os.walk(os.path.join(directory, folder)):
                 for filename in files:
                     zipf.write(os.path.abspath(os.path.join(root, filename)), arcname=filename)
             zipf.close()
-
-
-
-data_folder = Path("C:/Path/To/File")
-renameFileExtension(data_folder, ".odt", ".zip")
-unzipToSeparateDirectories(data_folder)
-findReplace(data_folder, "TEXT TO REPLACE", "TEXT TO INSERT", "*.xml")
-zipFolder(data_folder)
-renameFileExtension(data_folder, ".zip", ".odt")
+'''
