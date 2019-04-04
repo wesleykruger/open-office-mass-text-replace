@@ -5,5 +5,4 @@ This Python script essentially acts as a mass find/replace string for Open Offic
 This process became tedious when it needed to be done for dozens of files, so I created this script to do it for me. Just drop all the ODT files that you want to edit into a directory, then run the script with the data_folder variable pointing at that directory.
 
 ## Known bugs
-a) The program does not currently zip up the edited files properly. This is due to an oddity with Python's zipfile tool, and I'm looking for a way to make it match 7zip's zipping format. Currently you'll still need to manually zip up the edited files and rename them yourself, which isn't ideal.
-b) Because of problem a), the script does not delete its folders after it makes its changes. We will delete these once we no longer need to manually zip and rename them.
+Currently none. The program will only replace one line at a time, and that can be adjusted if a business need arises.
