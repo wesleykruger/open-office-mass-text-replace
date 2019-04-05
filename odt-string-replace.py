@@ -31,7 +31,7 @@ def unzipToSeparateDirectories(directory):
     pattern = '*.zip'
     for root, dirs, files in os.walk(directory):
         for filename in fnmatch.filter(files, pattern):
-            '''I have no idea where this is coming from'''
+            # I have no idea where this is coming from
             if filename != 'desktop.zip':
                 print(os.path.join(root, filename))
                 zipfile.ZipFile(os.path.join(root, filename)).extractall(os.path.join(root, os.path.splitext(filename)[0]))
@@ -56,7 +56,7 @@ def get_all_file_paths(directory):
             filepath = os.path.join(root, filename)
             file_paths.append(filepath)
 
-            # returning all file paths
+    # returning all file paths
     return file_paths
 
 
