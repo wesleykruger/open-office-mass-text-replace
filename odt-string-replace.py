@@ -26,6 +26,7 @@ def findReplace(directory, find, replace, filePattern):
             with open(filepath, "w") as f:
                 f.write(s)
 
+
 def unzipToSeparateDirectories(directory):
     pattern = '*.zip'
     for root, dirs, files in os.walk(directory):
@@ -57,6 +58,7 @@ def get_all_file_paths(directory):
 
             # returning all file paths
     return file_paths
+
 
 def zipFolder(directory):
     # Open Office expects that all files be deflated except for the mimetype file.
@@ -104,11 +106,11 @@ def zipFolder(directory):
             finally:
                 zip_file2.close()
 
+
 def deleteLeftoverFolders(directory):
     for root, dirs, files in os.walk(directory):
         for folder in dirs:
             shutil.rmtree(os.path.join(directory, folder))
-
 
 
 data_folder = Path(pathToOdtDirectory)
