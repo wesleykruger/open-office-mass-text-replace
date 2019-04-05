@@ -24,7 +24,7 @@ def unzipToSeparateDirectories(directory):
     pattern = '*.zip'
     for root, dirs, files in os.walk(directory):
         for filename in fnmatch.filter(files, pattern):
-            '''I have no idea where this is coming from'''
+            # I have no idea where this is coming from
             if filename != 'desktop.zip':
                 print(os.path.join(root, filename))
                 zipfile.ZipFile(os.path.join(root, filename)).extractall(os.path.join(root, os.path.splitext(filename)[0]))
@@ -52,15 +52,3 @@ unzipToSeparateDirectories(data_folder)
 findReplace(data_folder, "#if ( $PAGETWOARR.size() == 1 )", "#if ( $PAGETWOARR.size() == 1 || (($foreach.count - 1) % 4 == 0 and $foreach.count == $PAGETWOARR.size() ))", "*.xml")
 zipFolder(data_folder)
 renameFileExtension(data_folder, ".zip", ".odt")
-
-
-'''
-def zipFolder(directory):
-    for folder in os.listdir(directory):
-        if folder != 'desktop.zip':
-            zipf = zipfile.ZipFile('{0}.zip'.format(os.path.join(directory, folder)), 'w', zipfile.ZIP_STORED)
-            for root, dirs, files in os.walk(os.path.join(directory, folder)):
-                for filename in files:
-                    zipf.write(os.path.abspath(os.path.join(root, filename)), arcname=filename)
-            zipf.close()
-'''
