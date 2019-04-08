@@ -2,10 +2,10 @@ import os, fnmatch, zipfile, sys, shutil
 from pathlib import Path
 
 
-textToReplace = ""
-textToInsert = ""
+textToReplace = "P.O. Box"
+textToInsert = "PO Box"
 # Use forward slashes for this path even if you are on Windows, pathlib's Path functionality handles it this way
-pathToOdtDirectory = ""
+pathToOdtDirectory = "C:/Users/wesleykruger/Documents/Encore/single-line-fix/rename-these"
 
 
 def renameFileExtension(directory, startingExtension, endingExtension):
@@ -20,10 +20,10 @@ def findReplace(directory, find, replace, filePattern):
     for path, dirs, files in os.walk(os.path.abspath(directory)):
         for filename in fnmatch.filter(files, filePattern):
             filepath = os.path.join(path, filename)
-            with open(filepath) as f:
+            with open(filepath, encoding='utf8') as f:
                 s = f.read()
             s = s.replace(find, replace)
-            with open(filepath, "w") as f:
+            with open(filepath, "w", encoding='utf8') as f:
                 f.write(s)
 
 
