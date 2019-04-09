@@ -116,7 +116,7 @@ def deleteLeftoverFolders(directory):
 data_folder = Path(pathToOdtDirectory)
 renameFileExtension(data_folder, ".odt", ".zip")
 unzipToSeparateDirectories(data_folder)
-findReplace(data_folder, textToReplace, textToInsert, "*.xml")
+findReplace(data_folder, textToReplace, textToInsert, "content.xml")
 zipFolder(data_folder)
 renameFileExtension(data_folder, ".zip", ".odt")
 deleteLeftoverFolders(data_folder)
